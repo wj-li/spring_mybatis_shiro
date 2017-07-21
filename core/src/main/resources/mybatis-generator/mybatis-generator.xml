@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- Eclipse使用说明:Run As -> Run Configurations -> Maven Build -> New -> Base directory -> Browse File System -> 项目根目录 -> Goals:mybatis-generator:generate -->
+
+	<context id="context" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<!-- Database Configurations -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1/spring_mybatis_shiro?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"
+			userId="root" password="root" />
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+
+		<!-- Model Configurations -->
+		<!--生成Model类存放位置 -->
+		<javaModelGenerator targetPackage="com.demo.entity"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- Mapper XML Configurations-->
+		<!--生成映射文件存放位置 -->
+		<!--targetProject src/main/java or MAVEN(generate-sources) -->
+		<sqlMapGenerator targetPackage="com.demo.entity.mapper"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- Mapper Interface Configurations -->
+		<!--生成Dao类存放位置 -->
+		<javaClientGenerator targetPackage="com.demo.dao"
+			targetProject="src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="t_tv_channel" domainObjectName="TvChannel"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<!-- 使用从数据库元数据获取的列名作为生成的实体对象的属性 -->
+			<!-- 在insert后，自动给id赋值 -->
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+	</context>
+</generatorConfiguration>
